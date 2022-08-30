@@ -1,0 +1,40 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class AbstractList
+abstract AbstractCollection
+interface List
+interface Collection
+
+List <|... AbstractList
+List <|... LinkedList
+Collection <|-- AbstractCollection
+
+Collection <|- List
+AbstractCollection <|- AbstractList
+AbstractList <|-- ArrayList
+
+class dep1{
+}
+
+class dep2{
+}
+
+ArrayList --> dep1
+ArrayList --> dep2
+
+class ArrayList {
+Object[] elementData
+size()
+
+dep1 field1
+dpe2 field2
+}
+
+enum TimeUnit {
+DAYS
+HOURS
+MINUTES
+}
+
+@enduml
