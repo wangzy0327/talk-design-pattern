@@ -67,3 +67,28 @@
 
 
 
+### 工厂方法模式
+
+示例：披萨
+
+```
+披萨项目新的需求：客户在点披萨时，可以点不同口味的披萨，比如北京的奶酪pizza、北京的胡椒pizza、伦敦的奶酪pizza、伦敦的胡椒pizza
+
+思路1
+使用简单工厂模式，创建不同的简单工厂类，比如BJPizzaSimpleFactory、LDPizzaSimpleFactory等等。从当前这个案例来说，也是可以的，但是考虑到项目的规模，以及软件的可维护性、可扩展性并不是特别好
+
+思路2
+使用工厂方法模式
+```
+
+工厂方法模式介绍
+
+工厂方法模式设计方案：将披萨项目的实例化功能抽象成抽象方法，在不同的口味点餐子类中具体实现。一定程度上通过加层给大工厂（OrderPizza）加上小工厂(BJOrderPizza)
+
+工厂方法模式：定义了一个创建对象的抽象方法，由子类决定要实例化的类。工厂方法模式将**对象的实例化推迟到子类**。
+
+使用工厂方法UML
+
+[实现代码](src/main/java/com/wzy/factory/factorymethod/pizzastore/order/PizzaStore.java)
+
+![工厂方法-披萨类图](imgs/pizzastore03.png)
