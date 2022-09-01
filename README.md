@@ -144,3 +144,96 @@ JDK中的Calendar类中，就使用了简单工厂模式
 - 不要让类继承具体类，而是继承抽象类或者是实现interface（接口）
 - 不要覆盖基类中已经实现的方法（里式替换）
 
+
+
+### 原型模式
+
+克隆羊问题
+
+```
+现在有一只羊tom，姓名为tom，年龄为1，颜色为白色，请编写程序创建和tom羊属性完全相同的10只羊
+```
+
+传统方式解决克隆羊问题
+
+传统方式UML
+
+![传统方式-克隆羊](imgs/prototype01.png)
+
+[实现代码](src/main/java/com/wzy/prototype/Client.java)
+
+传统方式优缺点：
+
+1）优点是比较好理解，简单易操作
+
+2）在创建新的对象时，总是需要重新获取原始对象的属性，如果创建的对象比较复杂时，效率较低
+
+3）总是需要重新初始化对象，而不是动态地获得对象运行时的状态，不够灵活
+
+4）改进的思路分析
+
+思路：Java中的Object类是所有类的根类，Object类提供了一个clone()方法，该方法可以将一个Java对象复制一份，但是需要实现clone的java类必须要实现一个接口Cloneable，该接口表示该类能够复制且具有复制的能力=>原型模式
+
+**原型模式介绍**
+
+1）原型模式（Prototype模式）是指：用原型实例指定创建对象的种类，并且通过拷贝这些原型，创建新的对象
+
+2）原型模式时一种创建型设计模式，允许一个对象再创建另外一个可定制的对象，无需知道如何创建的细节
+
+3）工作原理是：通过将一个原型对象传给那个要发动创建的对象，这个要发动创建的对象通过请求原型对象拷贝它们自己来实施创建，即 对象.clone()
+
+4）形象的理解：孙大圣拔出猴毛，变出其它孙大圣
+
+原型模式UML
+
+[实现代码](src/main/java/com/wzy/prototype/advance/Client.java)
+
+![传统方式-克隆羊](imgs/prototype02.png)
+
+原理结构图说明：
+
+1）Prototype：原型类，声明一个克隆自己的接口，可以理解为Object类
+
+2）ConcretePrototype：具体的原型类，实现一个克隆自己的操作，可以理解为Sheep类，Cat类
+
+3）Client：让一个原型对象克隆自己，从而创建一个新的对象（属性一样）
+
+##### 原型模式在Spring框架中源码分析
+
+1）Spring中原型bean的创建，就是原型模式的应用
+
+2）代码分析  [实现代码](src/main/java/com/wzy/prototype/spring/test/ProtoType.java)
+
+```xml
+beans.xml
+<bean id="id01" class = "com.atguigu.spring.bean.Monster" scope="prototype"/>
+```
+
+```java
+Test.java
+ApplicationContext applicationContext = new ClassPathXmlApplicationContext("beans.xml");
+//获取monster[通过id获取monster]
+Object bean = applicationContext.getBean("id01");
+System.out.println("bean"+bean);
+
+@Override
+public Object getBean(String name) throws BeansException{
+	return doGetBean(name,null,null,false);
+}
+```
+
+浅拷贝-深拷贝  [实现代码](src/main/java/com/wzy/prototype/deepclone/Client.java)
+
+```
+浅拷贝的方式，就是说基本数据类型采用值传递，引用数据类型采用不同引用指向同一个对象，即引用传递
+浅拷贝意味着原对象修改引用数据对象属性，拷贝对象的属性跟着改变
+浅拷贝是使用默认clone()方法来实现 super.clone()
+如果要采用深拷贝的方式，需要为所有引用数据类型的成员变量申请空间，并复制每个引用数据类型成员变量所引用的对象。
+深拷贝实现方式1：需要重写clone()方法来实现
+深拷贝实现方式2：通过对象序列化实现深拷贝
+```
+
+1.[重写clone()完成深拷贝](src/main/java/com/wzy/prototype/deepclone/DeepProtoType.java)
+
+2.[通过对象序列化完成深拷贝 - deepcopy](src/main/java/com/wzy/prototype/deepclone/DeepProtoType.java)
+
