@@ -5,6 +5,7 @@ public class Sheep implements Cloneable{
     private int age;
     private String color;
     private String address = "蒙古羊";
+    private Sheep friend; //是对象 ，克隆会如何处理 ，默认是浅拷贝
 
     public Sheep(String name, int age, String color) {
         this.name = name;
@@ -34,6 +35,14 @@ public class Sheep implements Cloneable{
 
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public Sheep getFriend() {
+        return friend;
+    }
+
+    public void setFriend(Sheep friend) {
+        this.friend = friend;
     }
 
     @Override
