@@ -1,0 +1,49 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+
+class Product{}
+
+abstract class Builder{
+    protected Product product;
+    abstract buildPartA();
+    abstract buildPartB();
+    abstract buildPartC();
+    abstract getResult();
+}
+
+class ConcreteBuilder extends Builder{
+    builderPartA();
+    builderPartB();
+    builderPartC();
+    getResult();
+}
+
+class ConcreteBuilder2 extends Builder{
+    builderPartA();
+    builderPartB();
+    builderPartC();
+    getResult();
+}
+
+class Director{
+    Builder builder;
+    construct(){
+        builder.buildPartA();
+        builder.buildPartB();
+        builder.buildPartC();
+        return builder.getResult();}
+}
+
+class Client{}
+
+Builder *---Product
+Director o---Builder
+
+Client ...>Director
+Client ...>ConcreteBuilder
+Client ...>ConcreteBuilder2
+
+@enduml
