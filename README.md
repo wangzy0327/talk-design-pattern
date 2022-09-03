@@ -384,14 +384,16 @@ public Object getBean(String name) throws BeansException{
 
 ##### **适配器模式在SpringMVC框架应用的源码剖析**
 
-**1) SpringMVC**中的HandlerAdapter, **就使用了适配器模式**
+1) **SpringMVC**中的HandlerAdapter, **就使用了适配器模式**
 
 2) SpringMVC处理请求的流程回顾
 
 3) 使用HandlerAdapter 的原因分析：
 
 ```
-可以看到处理器的类型不同，有多重实现方式，那么调用方式就不是确定的，如果需要直接调用Controller方法，需要调用的时候就得不断是使用if else来进行判断是哪一种子类然后执行。那么如果后面要扩展Controller，就得修改原来的代码，这样违背了OCP原则。
+可以看到处理器的类型不同，有多重实现方式，那么调用方式就不是确定的。
+如果需要直接调用Controller方法，需要调用的时候就得不断是使用if else来进行判断是哪一种子类然后执行。
+那么如果后面要扩展Controller，就得修改原来的代码，这样违背了OCP原则。
 ```
 
 4) 动手模拟SpringMVC通过**适配器设计模式**获取到对应的Controller的源码 [代码实现](src/main/java/com/wzy/adapter/springmvc/DispatchServlet.java)
