@@ -324,3 +324,82 @@ public Object getBean(String name) throws BeansException{
 **7)** **抽象工厂模式** VS **建造者模式**
 
 抽象工厂模式实现对产品家族的创建，一个产品家族是这样的一系列产品：具有不同分类维度的产品组合，采用**抽象工厂模式**不需要关心构建过程，**只关心**什么产品由什么工厂生产即可。而**建造者模式**则是要求**按照指定**的蓝图建造产品，它的主要目的是**通过组装零配件**而产生一个**新产品**（抽象过程的不同实现可以构造不同表现的对象）
+
+[建造者模式讲解](https://zhuanlan.zhihu.com/p/58093669)
+
+
+
+### 适配器模式
+
+电源适配器案例
+
+```
+类适配器模式介绍
+基本介绍：Adapter类，通过继承 src类，实现 dst 类接口，完成src->dst的适配。
+类适配器模式应用实例
+应用实例说明
+以生活中充电器的例子来讲解适配器，充电器本身相当于Adapter，220V交流电
+相当于src (即被适配者)，我们的目dst(即 目标)是5V直流电
+```
+
+
+
+**适配器模式基本介绍**
+
+1) 适配器模式(Adapter Pattern)将某个类的接口转换成客户端期望的另一个接口表示，主的目的是兼容性，让原本因接口不匹配不能一起工作的两个类可以协同工作。其别名为包装器(Wrapper)
+
+2) 适配器模式属于结构型模式
+
+3) 主要分为三类：类适配器模式、对象适配器模式、接口适配器模式
+
+**工作原理**
+
+1) 适配器模式：将一个类的接口转换成另一种接口.让**原本接口不兼容的类可以**兼容
+
+2) 从用户的角度看不到被适配者，是解耦的
+
+3) 用户调用适配器转化出来的目标接口方法，适配器再调用被适配者的相关接口方法
+
+4) 用户收到反馈结果，感觉只是和目标接口交互
+
+类适配器UML  [实现代码](src/main/java/com/wzy/adapter/classadapter/Client.java)
+
+![类适配器-充电器类图](imgs/classadapter.png)
+
+对象适配器UML  [实现代码](src/main/java/com/wzy/adapter/objectadapter/Client.java)
+
+![对象适配器-充电器类图](imgs/objectadapter.png)
+
+接口适配器UML  [代码示例](src/main/java/com/wzy/adapter/interfaceadapter/Client.java)
+
+![接口适配器-类图](imgs/interfaceadapter.png)
+
+1) 一些书籍称为：适配器模式(Default Adapter Pattern)或缺省适配器模式。
+
+2) 当不需要全部实现接口提供的方法时，可先设计一个抽象类实现接口，并为该接口中每个方法提供一个默认实现（空方法），那么该抽象类的子类可有选择地覆盖父类的某些方法来实现需求。
+
+3) 适用于一个接口不想使用其所有的方法的情况。
+
+
+
+##### **适配器模式在SpringMVC框架应用的源码剖析**
+
+**1) SpringMVC**中的HandlerAdapter, **就使用了适配器模式**
+
+2) SpringMVC处理请求的流程回顾
+
+3) 使用HandlerAdapter 的原因分析：
+
+```
+可以看到处理器的类型不同，有多重实现方式，那么调用方式就不是确定的，如果需要直接调用Controller方法，需要调用的时候就得不断是使用if else来进行判断是哪一种子类然后执行。那么如果后面要扩展Controller，就得修改原来的代码，这样违背了OCP原则。
+```
+
+4) 动手模拟SpringMVC通过**适配器设计模式**获取到对应的Controller的源码 [代码实现](src/main/java/com/wzy/adapter/springmvc/DispatchServlet.java)
+
+**说明：**
+
+• Spring定义了一个适配接口，使得每一种Controller有一种对应的适配器实现类
+
+• 适配器代替controller执行相应的方法
+
+• 扩展Controller 时，只需要增加一个适配器类就完成了SpringMVC的扩展了
