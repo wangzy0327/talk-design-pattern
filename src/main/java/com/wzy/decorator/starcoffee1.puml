@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Drink{
+    description
+    getDescription()
+    cost()
+}
+class Decaf extends Drink{
+    cost()
+}
+class ShortBlack extends Drink{
+    cost()
+}
+class LongBlack extends Drink{
+    cost()
+}
+class Espresso extends Drink{
+    cost()
+}
+class Espresso_Milk extends Drink{
+    cost()
+}
+class Espresso_Soy extends Drink{
+    cost()
+}
+class Espresso_Milk_Soy extends Drink{
+    cost()
+}
+
+
+
+@enduml

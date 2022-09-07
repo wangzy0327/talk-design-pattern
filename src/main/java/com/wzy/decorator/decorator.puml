@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Drink{
+    String description;
+    getDescription()
+    cost()
+}
+abstract class Coffee extends Drink{
+    getDescription()
+}
+class ShortBlack extends Coffee{
+    getDescription()
+    cost()
+}
+class LongBlack extends Coffee{
+    getDescription()
+    cost()
+}
+class Espresso extends Coffee{
+    getDescription()
+    cost()
+}
+
+class Decorator_Coffee extends Coffee{
+    Coffee component;
+    description()
+    cost()
+}
+
+Decorator_Coffee *--->Coffee
+
+@enduml
