@@ -1,0 +1,26 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class InputStream implements Closeable{}
+class FilterInputStream extends InputStream{
+    protected volatile InputStream in;
+}
+class FileInputStream extends InputStream{
+    protected volatile InputStream in;
+}
+class ByteArrayInputSteam extends InputStream{
+    protected volatile InputStream in;
+}
+class DataInputStream extends FilterInputStream implements DataInput{
+}
+
+class BufferedInputStream extends FilterInputStream implements DataInput{
+}
+
+FileInputStream *---> InputStream
+FilterInputStream *---> InputStream
+ByteArrayInputSteam *---> InputStream
+
+
+
+@enduml

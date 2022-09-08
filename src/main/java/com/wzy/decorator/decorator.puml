@@ -3,31 +3,43 @@
 
 abstract class Drink{
     String description;
-    getDescription()
-    cost()
+    float price;
+    setPrice()
+    setDes()
+    getDes()
+    abstract cost()
 }
 abstract class Coffee extends Drink{
-    getDescription()
+    cost()
 }
 class ShortBlack extends Coffee{
-    getDescription()
-    cost()
+    setPrice()
+    setDes()
 }
 class LongBlack extends Coffee{
-    getDescription()
-    cost()
+    setPrice()
+    setDes()
 }
 class Espresso extends Coffee{
-    getDescription()
-    cost()
+    setPrice()
+    setDes()
 }
 
-class Decorator_Coffee extends Coffee{
-    Coffee component;
-    description()
-    cost()
+abstract class Decorator extends Drink{
+    Drink component;
+    getDes()
 }
 
-Decorator_Coffee *--->Coffee
+class Chocolate extends Decorator{
+    setPrice()
+    setDes()
+}
+
+class Milk extends Decorator{
+    setPrice()
+    setDes()
+}
+
+Decorator *--->Drink
 
 @enduml
