@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class client{}
+
+class facade{}
+
+class subsys1{}
+
+class subsys2{}
+
+class subsys3{}
+
+facade o...> subsys1
+facade o...> subsys2
+facade o...> subsys3
+
+client ...> facade
+
+
+
+
+
+@enduml
