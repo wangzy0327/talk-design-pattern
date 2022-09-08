@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class OrganizationComponent{
+    add()
+    remove()
+}
+
+class College extends OrganizationComponent{
+    List<OrganizationComponent> Department;
+}
+
+class Department extends OrganizationComponent {
+
+}
+
+class University extends OrganizationComponent {
+    List<OrganizationComponent> college;
+}
+
+
+
+Client ...> OrganizationComponent
+
+University o--->OrganizationComponent
+College o--->OrganizationComponent
+
+@enduml

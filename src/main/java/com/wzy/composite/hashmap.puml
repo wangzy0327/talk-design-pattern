@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+interface Map{
+    abstract put(K,V)
+    abstract putAll(Map<? extends K, ? extends V>)
+}
+abstract class AbstractMap implements Map{
+    put(K,V)
+    putAll(Map<? extends K, ? extends V>)
+}
+
+class HashMap extends AbstractMap implements Map{
+    Node[] nodes
+    put(K,V)
+    putAll(Map<? extends K, ? extends V>)
+}
+
+class HashMap.Node{
+    getKey()
+    getValue()
+}
+
+HashMap ...>HashMap.Node
+
+
+
+@enduml
