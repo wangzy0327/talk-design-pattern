@@ -558,6 +558,16 @@ jdbc接口UML
 
 Java的IO结构，FilterInputStream就是一个装饰者（Decorator），InputStream是被装饰者类（Component）
 
+```
+说明：
+1.InputStream 是抽象类，类似我们前面讲的Drink
+2.FileInputStream 是InputStream子类，类似我们前面的DeCaf，LongBlack
+3.FilterInputStream 是InputStream子类：类似我们前面的Decorator修饰者
+4.DataInputStream 是 FilterInputStream子类，具体的修饰者，类似前面的Milk，Soy等
+```
+
+[InputStream代码](src/main/java/com/wzy/decorator/inputstream/Decorator.java)
+
 InputStream UML类图
 
 ![InputStreamUML类图](imgs/inputstream.png)
