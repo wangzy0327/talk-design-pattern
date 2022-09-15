@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Website{
+    use(User)
+}
+class WebsiteFactory{
+    getWebsiteCatetory(key)
+}
+
+class Client{}
+
+class ConcreteWebsite extends Website{
+    //类型是内部状态
+    String type
+    use(User)
+}
+
+class User{
+    //外部状态
+}
+
+Client ...>WebsiteFactory
+Client ...>ConcreteWebsite
+Client ...>User
+ConcreteWebsite ...>User
+
+WebsiteFactory o...>Website
+
+
+@enduml

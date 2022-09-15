@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Flyweight{
+    operation()
+}
+class FlyweightFactory{
+    getFlyWeight(key)
+}
+
+class Client{}
+
+class ConcreteFlyWeight extends Flyweight{
+    operation()
+}
+
+class UnsharedConcreteFlyweight extends Flyweight{
+    operation()
+}
+
+Client ...>FlyweightFactory
+Client ...>ConcreteFlyWeight
+Client ...>UnsharedConcreteFlyweight
+
+FlyweightFactory o...>Flyweight
+
+
+@enduml
