@@ -1,0 +1,33 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+interface org.springframework.cglib.proxy.MethodInterceptor{
+    intercept(Object o, Method method, Object[] args, MethodProxy methodProxy)
+}
+
+
+class TeacherDao {
+    teach()
+}
+
+class ProxyFactory implements org.springframework.cglib.proxy.MethodInterceptor{
+    Object target
+    ProxyFactory(Object target)
+    getProxyInstance()
+    intercept(Object o, Method method, Object[] args, MethodProxy methodProxy)
+}
+
+class Client{}
+
+Client ...> ProxyFactory
+Client ...> TeacherDao
+
+note bottom of ProxyFactory
+    getInstance()给目标对象target创建一个代理对象
+    重写intercept()方法，实现对被代理对象（目标对象）方法调用
+end note
+
+
+
+@enduml
