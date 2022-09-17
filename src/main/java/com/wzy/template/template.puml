@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class AbstractClass{
+    template()
+    operation1()
+    operation2()
+    operation3()
+}
+
+note top of AbstractClass
+template 模板方法
+1.规定了算法大致的流程
+template(){
+    operation1()
+    operation2()
+    operation3()
+}
+
+operation1,2,3,可以是抽象方法也可以是实现方法
+如果是抽象方法，就放到子类去实现即可
+end note
+
+class ConcreteClassA extends AbstractClass{
+    operation1()
+    operation2()
+    operation3()
+}
+
+class ConcreteClassB extends AbstractClass{
+    operation1()
+    operation2()
+    operation3()
+}
+
+Client ...>ConcreteClassA
+Client ...>ConcreteClassB
+
+@enduml
