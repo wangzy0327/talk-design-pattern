@@ -1,0 +1,53 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface ConfigurableApplicationContext{
+    abstract refresh()
+}
+
+class AbstractApplicationContext implements ConfigurableApplicationContext{
+    refresh()
+    obtainFreshBeanFactory()
+    refreshBeanFactory()
+    getBeanFactory()
+    postProcessBeanFactory()
+    onRefresh()
+}
+
+note left of AbstractApplicationContext
+    refresh() 组合了相关抽象方法和钩子方法 类似于豆浆制作过程
+    getBeanFactory()  抽象方法
+    refreshBeanFactory() 抽象方法
+    postProcessBeanFactory() 是钩子方法
+    onRefresh() 也是钩子方法
+    它们在模板方法refresh被使用
+end note
+
+class GenericApplicationContext extends AbstractApplicationContext{
+    getBeanFactory()
+    refreshBeanFactory()
+}
+
+class AbstractRefreshableApplicationContext extends AbstractApplicationContext{
+    getBeanFactory()
+    refreshBeanFactory()
+}
+
+class AnnotationConfigWebApplicationContext extends AbstractRefreshableApplicationContext{
+}
+
+class AbstractRefreshableConfigApplicationContext extends AbstractRefreshableApplicationContext{
+}
+
+class AbstractXmlApplicationContext extends AbstractRefreshableConfigApplicationContext{
+}
+
+class ClassPathXmlApplicationContext extends AbstractXmlApplicationContext{
+}
+
+class Client{}
+
+Client *...>ConfigurableApplicationContext
+Client ...>ClassPathXmlApplicationContext
+
+@enduml

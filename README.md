@@ -1052,3 +1052,23 @@ cglib生成代理对象UML
 豆浆制作UML
 
 ![豆浆制作UML类图](imgs/soymilk.png)
+
+**模板方法模式的钩子方法**  [实现代码](src/main/java/com/wzy/template/advance/Client.java)
+
+1) 在模板方法模式的父类中，我们可以定义一个方法，它默认不做任何事，子类可以视情况要不要覆盖它，该方法称为“钩子”
+
+2) 还是用上面做豆浆的例子来讲解，比如，我们还希望制作纯豆浆，不添加任何的配料，请使用钩子方法对前面的模板方法进行改造
+
+豆浆制作钩子方法UML
+
+![豆浆制作钩子方法UML类图](imgs/advance-soymilk.png)
+
+**模板方法模式在Spring框架应用的源码分析**
+
+1) Spring IOC容器初始化时运用到的模板方法模式
+
+2) 代码分析+角色分析+说明类图
+
+Spring IOC UML类图
+
+![spring-ioc模板方法UML类图](imgs/ioc-template.png)

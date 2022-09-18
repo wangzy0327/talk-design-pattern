@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class SoyMilk{
+    final void make()
+    private void select()
+    void add()
+    private void soak()
+    private void beat()
+}
+
+note top of SoyMilk
+    final make() 模板方法，做成final，不让子类去覆盖
+    add()是添加配料，因为不同的豆浆，配料不同，因为设置为抽象方法
+end note
+
+note left of SoyMilk::make
+    make()方法中集成了操作过程select,add,soak,beat
+end note
+
+note left of SoyMilk::add
+    add() 父类采用模板空方法（钩子方法），子类根据需要重写
+end note
+
+class BlackBeanSoyMilk extends SoyMilk {
+    add()
+}
+
+class PeanutSoyMilk extends SoyMilk {
+    add()
+}
+
+class PureSoyMilk extends SoyMilk {
+}
+
+note bottom of PureSoyMilk
+    纯豆浆使用父类add()空实现即可
+end note
+
+Client ...>SoyMilk
+Client ...>BlackBeanSoyMilk
+Client ...>PeanutSoyMilk
+Client ...>PureSoyMilk
+
+
+@enduml
