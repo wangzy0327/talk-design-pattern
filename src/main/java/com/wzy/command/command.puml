@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+interface Command{
+    execute()
+    undo()
+}
+
+class ConcreteCommand implements Command{
+    execute()
+    undo()
+}
+
+class Invoker{
+
+}
+
+class Receiver{
+    action()
+}
+
+Client ...>Invoker
+Invoker o...>Command
+ConcreteCommand o...>Receiver
+
+Client ...>ConcreteCommand
+Client ...>Receiver
+
+
+@enduml
