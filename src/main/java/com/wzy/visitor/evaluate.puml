@@ -1,0 +1,59 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class Action{
+    evaluateMan()
+    evaluateWoman()
+}
+
+note top of Action
+    抽象访问者
+end note
+
+class Success extends Action{
+    evaluateMan(Man man)
+    evaluateWoman(Woman woman)
+}
+
+class Fail extends Action{
+    evaluateMan(Man man)
+    evaluateWoman(Woman woman)
+}
+
+class Wait extends Action{
+    evaluateMan(Man man)
+    evaluateWoman(Woman woman)
+}
+
+abstract class Singer{
+    accept(Action action)
+}
+
+note top of Singer
+    定义一个accept方法，接收一个访问者对象
+end note
+
+class Man extends Singer{
+    accept(Action action)
+}
+
+class Woman extends Singer{
+    accept(Action action)
+}
+
+class ObjectStructure{
+    Singer singer
+}
+
+note top of ObjectStructure
+    能枚举它的元素，可以提供一个高层的几口，用来允许访问者访问元素
+end note
+
+class Client{
+}
+
+Singer ...>Action
+ObjectStructure o...>Singer
+
+
+@enduml

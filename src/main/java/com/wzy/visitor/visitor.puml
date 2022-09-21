@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Visitor{
+    operation1()
+    operation2()
+}
+
+note top of Visitor
+    抽象访问者
+end note
+
+class ConcreteVisitor extends Visitor{
+    operation1()
+    operation2()
+}
+
+class Element{
+    accept(Visitor visitor)
+}
+
+note top of Element
+    定义一个accept方法，接收一个访问者对象
+end note
+
+class ConcreteVisitor extends Element{
+    accept(Visitor visitor)
+}
+
+class ObjectStructure{
+    Element element
+}
+
+note top of ObjectStructure
+    能枚举它的元素，可以提供一个高层的几口，用来允许访问者访问元素
+end note
+
+class Client{
+}
+
+Element ...>Visitor
+ObjectStructure o...>Element
+
+@enduml
